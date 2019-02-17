@@ -1,0 +1,13 @@
+{
+  "description": "notice plat wechat app",
+  "setting": {
+    "urlCheck": true,
+    "es6": false,
+    "postcss": false,
+    "minified": false
+  },
+  "compileType": "miniprogram",
+  "appid": "wxb0168e8389c0e56f",
+  "projectname": "noticeplat",
+  "miniprogramRoot": "./dist"
+}

@@ -1,0 +1,129 @@
+<style lang="less">
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+</style>
+
+<script>
+import wepy from 'wepy'
+import 'wepy-async-function'
+
+export default class extends wepy.app {
+  config = {
+    pages: [
+      'pages/index',
+      'pages/me'
+    ],
+    window: {
+      backgroundTextStyle: 'light',
+      navigationBarBackgroundColor: '#fff',
+      navigationBarTitleText: 'WeChat',
+      navigationBarTextStyle: 'black'
+    },
+    tabBar: {
+      list: [{
+        pagePath: 'pages/index',
+        iconPath: 'images/home.png',
+        selectedIconPath: 'images/home_selected.png',
+        text: '首页'
+      },
+      {
+        pagePath: 'pages/index',
+        iconPath: 'images/dashboard.png',
+        selectedIconPath: 'images/dashboard_selected.png',
+        text: '实例'
+      },
+      {
+        pagePath: 'pages/me',
+        iconPath: 'images/me.png',
+        selectedIconPath: 'images/me_selected.png',
+        text: '我'
+      }]
+    }
+  }
+
+  globalData = {
+    userInfo: null
+  }
+
+  constructor () {
+    super()
+    this.use('requestfix')
+  }
+
+  onLaunch() {
+    this.login()
+    console.log('call login over')
+  }
+
+  async login() {
+    wepy.showLoading({
+      title: '登陆中'
+    })
+
+    // login code
+    const code = await this._login()
+
+    // get session by login code
+    const sess = await this._session(code)
+
+    // save session to storage
+    wepy.setStorage({
+      key: 'session',
+      data: sess
+    })
+
+    wepy.hideLoading()
+    wepy.showToast({
+      title: '登陆成功',
+      icon: 'success',
+      duration: 1500
+    })
+
+    console.log('--->' + sess)
+  }
+
+  async _login() {
+    return new Promise((resolve, reject) => {
+      wepy.login({
+        success(res) {
+          if (res.code) {
+            resolve(res.code)
+          } else {
+            reject(new Error('登录失败！' + res.errMsg))
+          }
+        },
+        fail() {
+          reject(new Error('登录失败！'))
+        }
+      })
+    })
+  }
+
+  async _session(code) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(code + ' session')
+      }, 1000)
+    })
+  }
+
+  getUserInfo(cb) {
+    const that = this
+    if (this.globalData.userInfo) {
+      return cb && cb(this.globalData.userInfo)
+    }
+    wepy.getUserInfo({
+      success (res) {
+        that.globalData.userInfo = res.userInfo
+        cb && cb(res.userInfo)
+      }
+    })
+  }
+}
+</script>
