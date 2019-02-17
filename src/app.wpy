@@ -1,4 +1,5 @@
 <style lang="less">
+@import './assets/styles/weui/weui.less';
 .container {
   height: 100%;
   display: flex;
@@ -17,7 +18,9 @@ export default class extends wepy.app {
   config = {
     pages: [
       'pages/index',
-      'pages/me'
+      'pages/me',
+      'pages/doc',
+      'pages/demo'
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -29,19 +32,19 @@ export default class extends wepy.app {
       list: [{
         pagePath: 'pages/index',
         iconPath: 'images/home.png',
-        selectedIconPath: 'images/home_selected.png',
+        selectedIconPath: 'assets/images/home_selected.png',
         text: '首页'
       },
       {
         pagePath: 'pages/index',
         iconPath: 'images/dashboard.png',
-        selectedIconPath: 'images/dashboard_selected.png',
+        selectedIconPath: 'assets/images/dashboard_selected.png',
         text: '实例'
       },
       {
         pagePath: 'pages/me',
         iconPath: 'images/me.png',
-        selectedIconPath: 'images/me_selected.png',
+        selectedIconPath: 'assets/images/me_selected.png',
         text: '我'
       }]
     }

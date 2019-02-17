@@ -2,20 +2,25 @@
   
 </style>
 <template>
-  <view class="container">
-  </view>
+  <wemark md="{{md}}" link highlight type="wemark"></wemark>
 </template>
 
 <script>
   import wepy from 'wepy'
+  const md = require('../assets/mock/md')
 
   export default class Index extends wepy.page {
     config = {
-      navigationBarTitleText: '首页'
+      navigationBarTitleText: '文档',
+      usingComponents: {
+        wemark: '/wemark/wemark'
+      }
     }
     components = {}
 
-    data = {}
+    data = {
+      md: md
+    }
 
     computed = {}
 
