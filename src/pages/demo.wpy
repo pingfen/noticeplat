@@ -220,7 +220,7 @@
 
     onLoad() {
       let self = this
-      this.$parent.getUserInfo(function (userInfo) {
+      this.$parent.getUserInfo(userInfo => {
         if (userInfo) {
           self.userInfo = userInfo
         }

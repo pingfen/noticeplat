@@ -1,0 +1,65 @@
+<style lang="less">
+  .group-base {
+    display: flex;
+    flex-direction: row;
+  }
+  .group-base-avatar image{
+    height: 128rpx;
+    width: 128rpx;
+    border-radius: 50%;
+  }
+  .group-base-detail {
+    display: flex;
+    flex-direction: column;
+  }
+  .group-name {
+    font-size: 30rpx;
+  }
+  .group-member-num {
+    color: #00AA7E;
+  }
+  .group-member-num,.group-desc {
+    font-size: 26rpx;
+  }
+</style>
+<template>
+  <page>
+    <view class="group-base">
+      <view class="group-base-avatar">
+        <image src="/assets/images/group.png"/>
+      </view>
+      <view class="group-base-detail">
+        <view class="group-name-members">
+          <text class="group-name">我的项目1</text>
+          <text>(</text>
+          <text class="group-member-num">21人</text>
+          <text>)</text>
+        </view>
+        <view class="group-desc">
+          <text>这是我的第一个项目</text>
+        </view>
+      </view>
+    </view>
+  </page>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '项目'
+    }
+    components = {}
+
+    data = {}
+
+    computed = {}
+
+    methods = {}
+
+    events = {}
+
+    onLoad() {}
+  }
+</script>

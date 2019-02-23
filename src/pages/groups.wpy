@@ -1,0 +1,39 @@
+<style lang="less">
+  .createProjectBtn {
+    position: fixed;
+    bottom: 40rpx;
+    right: 40rpx;
+  }
+  .createProjectBtn image {
+    height: 80rpx;
+    width: 80rpx;
+  }
+</style>
+<template>
+  <view class="container">
+    <navigator class="createProjectBtn" url="/pages/group_create">
+      <image src="/assets/images/create_btn.png"/>
+    </navigator>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '项目'
+    }
+    components = {}
+
+    data = {}
+
+    computed = {}
+
+    methods = {}
+
+    events = {}
+
+    onLoad() {}
+  }
+</script>

@@ -1,0 +1,93 @@
+<style lang="less">
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.userinfo-avatar {
+  width: 180rpx;
+  height: 180rpx;
+  margin: 10%;
+  border-radius: 50%;
+}
+</style>
+<template>
+  <page>
+    <form bindsubmit="createProject" report-submit="True" hidden="{{logined}}">
+      <view class="userinfo">
+        <image class="userinfo-avatar" src="{{projectAvatar()}}" background-size="cover"></image>
+      </view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">项目编码</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" name="projectId" placeholder="请输入项目编码，需为数字和字母组合"/>
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">项目名称</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" name="projectName" placeholder="请输入项目名称"/>
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">项目描述</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" name="projectDesc" placeholder="请输入项目描述"/>
+          </view>
+        </view>
+      </view>
+        
+      <view class="weui-btn-area">
+        <button class="weui-btn" type="primary" formType="submit">创建</button>
+      </view>
+    </form>
+  </page>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '创建项目'
+    }
+    components = {}
+
+    data = {
+      projectId: '',
+      projectName: '',
+      defaultProjectAvatarUrl: '/assets/images/group.png',
+      projectAvatarUrl: ''
+    }
+
+    computed = {
+      projectAvatar: function () {
+        return this.projectAvatarUrl === '' ? this.defaultProjectAvatarUrl : this.projectAvatarUrl
+      }
+    }
+
+    methods = {
+      createProject(data) {
+        let values = data.detail.value
+        console.log(values)
+      }
+    }
+
+    events = {}
+
+    onLoad() {}
+
+    onShow() {
+      wepy.showShareMenu({
+        withShareTicket: true
+      })
+    }
+  }
+</script>

@@ -14,12 +14,19 @@
 import wepy from 'wepy'
 import 'wepy-async-function'
 
+// wepy.showShareMenu({
+//   withShareTicket: true
+// })
+
 export default class extends wepy.app {
   config = {
     pages: [
       'pages/index',
       'pages/me',
       'pages/doc',
+      'pages/groups',
+      'pages/group',
+      'pages/group_create',
       'pages/demo'
     ],
     window: {
@@ -31,21 +38,21 @@ export default class extends wepy.app {
     tabBar: {
       list: [{
         pagePath: 'pages/index',
-        iconPath: 'images/home.png',
+        iconPath: 'assets/images/home.png',
         selectedIconPath: 'assets/images/home_selected.png',
         text: '首页'
       },
       {
-        pagePath: 'pages/index',
-        iconPath: 'images/dashboard.png',
-        selectedIconPath: 'assets/images/dashboard_selected.png',
-        text: '实例'
+        pagePath: 'pages/groups',
+        iconPath: 'assets/images/group.png',
+        selectedIconPath: 'assets/images/group_selected.png',
+        text: '项目'
       },
       {
         pagePath: 'pages/me',
-        iconPath: 'images/me.png',
+        iconPath: 'assets/images/me.png',
         selectedIconPath: 'assets/images/me_selected.png',
-        text: '我'
+        text: '我的'
       }]
     }
   }
@@ -59,7 +66,8 @@ export default class extends wepy.app {
     this.use('requestfix')
   }
 
-  onLaunch() {
+  onLaunch(args) {
+    console.log(args)
     this.login()
     console.log('call login over')
   }
